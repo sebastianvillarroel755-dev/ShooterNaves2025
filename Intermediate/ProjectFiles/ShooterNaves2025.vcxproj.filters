@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\ShooterNaves2025.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{6B1F9DC1-856C-44F0-9609-BCFB18A78D94}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\ShooterNaves2025.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\ShooterNaves2025Editor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{6BD33912-0846-4625-B61A-2D160FEE5C9B}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\ShooterNaves2025">
+      <UniqueIdentifier>{0D8C9E99-9C7B-424C-9E97-DF7000B33470}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\ShooterNaves2025\ShooterNaves2025.Build.cs">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\ShooterNaves2025\ShooterNaves2025.cpp">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ShooterNaves2025\ShooterNaves2025.h">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ShooterNaves2025\ShooterNaves2025GameMode.cpp">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ShooterNaves2025\ShooterNaves2025GameMode.h">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ShooterNaves2025\ShooterNaves2025Pawn.cpp">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ShooterNaves2025\ShooterNaves2025Pawn.h">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ShooterNaves2025\ShooterNaves2025Projectile.cpp">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ShooterNaves2025\ShooterNaves2025Projectile.h">
+      <Filter>Source\ShooterNaves2025</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
