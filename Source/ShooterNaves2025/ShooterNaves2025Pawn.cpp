@@ -12,6 +12,7 @@
 #include "Engine/StaticMesh.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundBase.h"
+#include "TimerManager.h"
 
 const FName AShooterNaves2025Pawn::MoveForwardBinding("MoveForward");
 const FName AShooterNaves2025Pawn::MoveRightBinding("MoveRight");
@@ -46,6 +47,10 @@ AShooterNaves2025Pawn::AShooterNaves2025Pawn()
 
 	// Movement
 	MoveSpeed = 1000.0f;
+
+	VelocidadBase = MoveSpeed;
+
+
 	// Weapon
 	GunOffset = FVector(90.f, 0.f, 0.f);
 	FireRate = 0.1f;
@@ -137,3 +142,84 @@ void AShooterNaves2025Pawn::ShotTimerExpired()
 	bCanFire = true;
 }
 
+void AShooterNaves2025Pawn::RecibirDanio(float CantidadDanio)
+{
+	if (bEstaMuerto)
+	{
+		return;
+	}
+
+	Vida -= CantidadDanio;
+
+	if (Vida <= 0.0f)
+	{
+		Morir();
+	}
+}
+
+void AShooterNaves2025Pawn::Morir()
+{
+	bEstaMuerto = true;
+
+	SetActorHiddenInGame(true);
+	SetActorEnableCollision(false);
+	SetActorTickEnabled(false);
+}
+
+void AShooterNaves2025Pawn::Curar(float Cantidad)
+{
+	Vida += Cantidad;
+
+	if (Vida > VidaMaxima)
+	{
+		Vida = VidaMaxima;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Jugador curado. Vida actual: %f"), Vida);
+}
+
+void AShooterNaves2025Pawn::ActivarDanioExtra(float Multiplicador, float Duracion)
+{
+	MultiplicadorDanio = Multiplicador;
+
+	GetWorldTimerManager().ClearTimer(TimerDanioExtra);
+	GetWorldTimerManager().SetTimer(
+		TimerDanioExtra,
+		this,
+		&AShooterNaves2025Pawn::QuitarDanioExtra,
+		Duracion,
+		false
+	);
+
+	UE_LOG(LogTemp, Warning, TEXT("PowerUp de danio activado"));
+}
+
+void AShooterNaves2025Pawn::QuitarDanioExtra()
+{
+	MultiplicadorDanio = 1.0f;
+
+	UE_LOG(LogTemp, Warning, TEXT("PowerUp de danio terminado"));
+}
+
+void AShooterNaves2025Pawn::ActivarVelocidadExtra(float Multiplicador, float Duracion)
+{
+	MoveSpeed = VelocidadBase * Multiplicador;
+
+	GetWorldTimerManager().ClearTimer(TimerVelocidadExtra);
+	GetWorldTimerManager().SetTimer(
+		TimerVelocidadExtra,
+		this,
+		&AShooterNaves2025Pawn::QuitarVelocidadExtra,
+		Duracion,
+		false
+	);
+
+	UE_LOG(LogTemp, Warning, TEXT("PowerUp de velocidad activado"));
+}
+
+void AShooterNaves2025Pawn::QuitarVelocidadExtra()
+{
+	MoveSpeed = VelocidadBase;
+
+	UE_LOG(LogTemp, Warning, TEXT("PowerUp de velocidad terminado"));
+}

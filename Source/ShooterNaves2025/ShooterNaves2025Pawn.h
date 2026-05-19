@@ -26,6 +26,42 @@ class AShooterNaves2025Pawn : public APawn
 public:
 	AShooterNaves2025Pawn();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float Vida = 100.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float VidaMaxima = 100.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	bool bEstaMuerto = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PowerUps")
+	float MultiplicadorDanio = 1.0f;
+
+	UFUNCTION(BlueprintCallable)
+	void Curar(float Cantidad);
+
+	UFUNCTION(BlueprintCallable)
+	void ActivarDanioExtra(float Multiplicador, float Duracion);
+
+	UFUNCTION(BlueprintCallable)
+	void ActivarVelocidadExtra(float Multiplicador, float Duracion);
+
+	void QuitarDanioExtra();
+
+	void QuitarVelocidadExtra();
+
+	FTimerHandle TimerDanioExtra;
+	FTimerHandle TimerVelocidadExtra;
+
+	float VelocidadBase;
+
+	UFUNCTION(BlueprintCallable)
+	void RecibirDanio(float CantidadDanio);
+
+	UFUNCTION(BlueprintCallable)
+	void Morir();
+
 	/** Offset from the ships location to spawn projectiles */
 	UPROPERTY(Category = Gameplay, EditAnywhere, BlueprintReadWrite )
 	FVector GunOffset;

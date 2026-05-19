@@ -14,8 +14,24 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define SHOOTERNAVES2025_ShooterNaves2025Pawn_generated_h
 
 #define ShooterNaves2025_Source_ShooterNaves2025_ShooterNaves2025Pawn_h_12_SPARSE_DATA
-#define ShooterNaves2025_Source_ShooterNaves2025_ShooterNaves2025Pawn_h_12_RPC_WRAPPERS
-#define ShooterNaves2025_Source_ShooterNaves2025_ShooterNaves2025Pawn_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define ShooterNaves2025_Source_ShooterNaves2025_ShooterNaves2025Pawn_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execMorir); \
+	DECLARE_FUNCTION(execRecibirDanio); \
+	DECLARE_FUNCTION(execActivarVelocidadExtra); \
+	DECLARE_FUNCTION(execActivarDanioExtra); \
+	DECLARE_FUNCTION(execCurar);
+
+
+#define ShooterNaves2025_Source_ShooterNaves2025_ShooterNaves2025Pawn_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execMorir); \
+	DECLARE_FUNCTION(execRecibirDanio); \
+	DECLARE_FUNCTION(execActivarVelocidadExtra); \
+	DECLARE_FUNCTION(execActivarDanioExtra); \
+	DECLARE_FUNCTION(execCurar);
+
+
 #define ShooterNaves2025_Source_ShooterNaves2025_ShooterNaves2025Pawn_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooterNaves2025Pawn(); \

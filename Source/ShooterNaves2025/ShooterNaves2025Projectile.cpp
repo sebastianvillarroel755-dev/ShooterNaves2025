@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/StaticMesh.h"
+#include "Nave_Padre.h"
 
 AShooterNaves2025Projectile::AShooterNaves2025Projectile() 
 {
@@ -35,11 +36,17 @@ AShooterNaves2025Projectile::AShooterNaves2025Projectile()
 
 void AShooterNaves2025Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	// Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
+	if ((OtherActor != nullptr) && (OtherActor != this))
 	{
-		OtherComp->AddImpulseAtLocation(GetVelocity() * 20.0f, GetActorLocation());
+		ANave_Padre* NaveEnemiga = Cast<ANave_Padre>(OtherActor);
+		if (NaveEnemiga != nullptr)
+		{
+			NaveEnemiga->RecibirDanio(Danio);
+		}
+		if ((OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
+		{
+			OtherComp->AddImpulseAtLocation(GetVelocity() * 20.0f, GetActorLocation());
+		}
 	}
-
 	Destroy();
 }

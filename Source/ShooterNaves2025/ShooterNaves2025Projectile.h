@@ -24,7 +24,8 @@ class AShooterNaves2025Projectile : public AActor
 
 public:
 	AShooterNaves2025Projectile();
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	float Danio = 25.0f;
 	/** Function to handle the projectile hitting something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
