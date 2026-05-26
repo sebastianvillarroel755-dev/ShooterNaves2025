@@ -73,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeNave_normal() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANave_Normal, 795903726);
+	IMPLEMENT_CLASS(ANave_Normal, 2115126686);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<ANave_Normal>()
 	{
 		return ANave_Normal::StaticClass();

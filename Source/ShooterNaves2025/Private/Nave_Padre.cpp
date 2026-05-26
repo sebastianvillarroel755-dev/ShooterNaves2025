@@ -79,7 +79,11 @@ void ANave_Padre::Morir()
 
 	if (GameMode)
 	{
-		if (bEsMiniBoss)
+		if (bEsBossFinal)
+		{
+			GameMode->BossFinalDestruido();
+		}
+		else if (bEsMiniBoss)
 		{
 			GameMode->MiniBossDestruido();
 		}
@@ -124,4 +128,19 @@ void ANave_Padre::HacerDanioAlJugador()
 	{
 		NaveJugador->RecibirDanio(DanioContacto);
 	}
+}
+
+void ANave_Padre::AplicarBuffBoss(float MultiplicadorVida, float MultiplicadorResistencia)
+{
+	if (bBuffActivo || bEsBossFinal)
+	{
+		return;
+	}
+
+	bBuffActivo = true;
+
+	Vida *= MultiplicadorVida;
+	MultiplicadorDanioRecibido *= MultiplicadorResistencia;
+
+	UE_LOG(LogTemp, Warning, TEXT("Enemigo buffeado por el boss final"));
 }

@@ -6,10 +6,18 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "MiniBoss.h"
+#include "ShooterHUD.h"
+#include "BossFinal.h"
+
+#include "Nave_Kamikaze.h"
+#include "Nave_Francotirador.h"
+#include "Nave_Tanque.h"
 
 AShooterNaves2025GameMode::AShooterNaves2025GameMode()
 {
     DefaultPawnClass = AShooterNaves2025Pawn::StaticClass();
+    HUDClass = AShooterHUD::StaticClass();
+
     NivelActual = 1;
     EnemigosRestantes = 0;
     MetaEnemigos = 0;
@@ -28,15 +36,31 @@ void AShooterNaves2025GameMode::BeginPlay()
 // Calcula la meta y arranca el spawn de enemigos
 void AShooterNaves2025GameMode::IniciarNivel()
 {
+
+    bFase1Completada = false;
+
+    if (NivelActual <= 6)
+    {
+        bGoodEnding = false;
+        bGameOver = false;
+    }
+
     MetaEnemigos = CalcularMetaEnemigos(NivelActual);
     EnemigosRestantes = MetaEnemigos;
     EnemigosGenerados = 0;
     EnemigosMuertosNivelActual = 0;
+    EnemigosGeneradosNivel6 = 0;
 
     MiniBossActual = nullptr;
     bMiniBossSpawned = false;
     bMiniBossDebilitado = false;
     bMiniBossDerrotado = false;
+
+    bBossFinalSpawned = false;
+    bBossFinalDerrotado = false;
+    BossFinalActual = nullptr;
+
+    TextoLoreActual = ObtenerTextoLorePorNivel(NivelActual);
 
     UE_LOG(LogTemp, Warning,
         TEXT("=== NIVEL %d INICIADO === Meta: %d enemigos"),
@@ -50,6 +74,13 @@ void AShooterNaves2025GameMode::IniciarNivel()
         &AShooterNaves2025GameMode::SpawnOleada,
         Intervalo,
         true);
+
+    MostrarMensajeTemporal(TextoLoreActual, 4.0f);
+    MostrarMensajeTemporal(TEXT("MINIBOSS APARECIO"), 3.0f);
+    MostrarMensajeTemporal(TEXT("MINIBOSS DEBILITADO"), 3.0f);
+    MostrarMensajeTemporal(TEXT("GOOD ENDING - La humanidad resistio"), 10.0f);
+    MostrarMensajeTemporal(TEXT("BAD ENDING - Has perdido la defensa"), 10.0f);
+    MostrarMensajeTemporal(TEXT("FASE 1 COMPLETADA"), 10.0f);
 }
 
 // Spawna enemigos segun el nivel actual
@@ -107,18 +138,24 @@ void AShooterNaves2025GameMode::SpawnOleada()
     {
         // Nivel 3: los 3 tipos al azar
         int32 Tipo = FMath::RandRange(0, 2);
+
         if (Tipo == 0)
             NuevoEnemigo = World->SpawnActor<ANave_Liviana>(
                 ANave_Liviana::StaticClass(),
                 SpawnPos, FRotator::ZeroRotator);
+
         else if (Tipo == 1)
             NuevoEnemigo = World->SpawnActor<ANave_Normal>(
                 ANave_Normal::StaticClass(),
                 SpawnPos, FRotator::ZeroRotator);
+
         else
             NuevoEnemigo = World->SpawnActor<ANave_Pesada>(
                 ANave_Pesada::StaticClass(),
                 SpawnPos, FRotator::ZeroRotator);
+
+        bFase1Completada = true;
+        MostrarMensajeTemporal(TEXT("FASE 1 COMPLETADA"), 5.0f);
     }
 
     // Guardar en el contenedor
@@ -130,6 +167,68 @@ void AShooterNaves2025GameMode::SpawnOleada()
         UE_LOG(LogTemp, Warning,
             TEXT("Enemigo spawneado. Generados: %d / %d"),
             EnemigosGenerados, MetaEnemigos);
+    }
+
+    else if (NivelActual == 4)
+    {
+        int32 Tipo = FMath::RandRange(0, 2);
+
+        if (Tipo == 0)
+            NuevoEnemigo = World->SpawnActor<ANave_Kamikaze>(ANave_Kamikaze::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else if (Tipo == 1)
+            NuevoEnemigo = World->SpawnActor<ANave_Francotirador>(ANave_Francotirador::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else
+            NuevoEnemigo = World->SpawnActor<ANave_Normal>(ANave_Normal::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+    }
+
+    else if (NivelActual == 5)
+    {
+        int32 Tipo = FMath::RandRange(0, 3);
+
+        if (Tipo == 0)
+            NuevoEnemigo = World->SpawnActor<ANave_Kamikaze>(ANave_Kamikaze::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else if (Tipo == 1)
+            NuevoEnemigo = World->SpawnActor<ANave_Francotirador>(ANave_Francotirador::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else if (Tipo == 2)
+            NuevoEnemigo = World->SpawnActor<ANave_Tanque>(ANave_Tanque::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else
+            NuevoEnemigo = World->SpawnActor<ANave_Pesada>(ANave_Pesada::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+    }
+
+    else if (NivelActual == 6)
+    {
+        if (!bBossFinalSpawned)
+        {
+            BossFinalActual = World->SpawnActor<ABossFinal>(
+                ABossFinal::StaticClass(),
+                SpawnPos,
+                FRotator::ZeroRotator
+            );
+
+            bBossFinalSpawned = true;
+
+            MostrarMensajeTemporal(TEXT("BOSS FINAL APARECIO"), 4.0f);
+
+            UE_LOG(LogTemp, Warning, TEXT("BOSS FINAL APARECIO"));
+
+            return;
+        }
+
+        if (EnemigosGeneradosNivel6 >= MaxEnemigosNivel6)
+        {
+            return;
+        }
+
+        int32 Tipo = FMath::RandRange(0, 2);
+
+        if (Tipo == 0)
+            NuevoEnemigo = World->SpawnActor<ANave_Kamikaze>(ANave_Kamikaze::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else if (Tipo == 1)
+            NuevoEnemigo = World->SpawnActor<ANave_Francotirador>(ANave_Francotirador::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+        else
+            NuevoEnemigo = World->SpawnActor<ANave_Tanque>(ANave_Tanque::StaticClass(), SpawnPos, FRotator::ZeroRotator);
+
+        EnemigosGeneradosNivel6++;
     }
 }
 
@@ -247,6 +346,17 @@ void AShooterNaves2025GameMode::VerificarMeta()
         return;
     }
 
+    if (NivelActual == 6)
+    {
+        if (bBossFinalDerrotado)
+        {
+            GetWorldTimerManager().ClearTimer(TimerSpawn);
+            GoodEnding();
+        }
+
+        return;
+    }
+
     if (EnemigosRestantes <= 0)
     {
         GetWorldTimerManager().ClearTimer(TimerSpawn);
@@ -258,6 +368,13 @@ void AShooterNaves2025GameMode::VerificarMeta()
 void AShooterNaves2025GameMode::SiguienteNivel()
 {
     EnemigosActivos.Empty();
+
+    if (NivelActual == 3)
+    {
+        MostrarMensajeTemporal(TEXT("FASE 1 COMPLETADA"), 5.0f);
+        UE_LOG(LogTemp, Warning, TEXT("=== FASE 1 COMPLETADA ==="));
+    }
+
     NivelActual++;
 
     if (NivelActual > 6)
@@ -268,10 +385,13 @@ void AShooterNaves2025GameMode::SiguienteNivel()
 
     UE_LOG(LogTemp, Warning, TEXT("Pasando al nivel %d"), NivelActual);
 
-    // Pequeña pausa antes de iniciar el siguiente nivel
     FTimerHandle TimerSiguiente;
-    GetWorldTimerManager().SetTimer(TimerSiguiente,
-        [this]() { IniciarNivel(); }, 3.0f, false);
+    GetWorldTimerManager().SetTimer(
+        TimerSiguiente,
+        [this]() { IniciarNivel(); },
+        3.0f,
+        false
+    );
 }
 
 // Se llama cuando el jugador recibe daño
@@ -296,19 +416,70 @@ void AShooterNaves2025GameMode::JugadorRecibioDanio()
 void AShooterNaves2025GameMode::GoodEnding()
 {
     bJugando = false;
-    UE_LOG(LogTemp, Warning,
-        TEXT("=== GOOD ENDING === Puntuacion final: %d"), Puntuacion);
-    // Aqui se mostrara la pantalla de good ending
-    // Tu compañero conecta el HUD aqui
+    bGoodEnding = true;
+
+    MostrarMensajeTemporal(TEXT("GOOD ENDING - La humanidad resistio la invasion"), 10.0f);
+
+    UE_LOG(LogTemp, Warning, TEXT("=== GOOD ENDING ==="));
 }
 
 // Activa el bad ending segun en que nivel perdio
 void AShooterNaves2025GameMode::BadEnding()
 {
+    bJugando = false;
+    bGameOver = true;
+
+    TextoBadEnding = ObtenerBadEndingPorNivel(NivelActual);
+
+    MostrarMensajeTemporal(TextoBadEnding, 10.0f);
+
     UE_LOG(LogTemp, Warning,
-        TEXT("=== BAD ENDING === Perdiste en el nivel %d"), NivelActual);
-    // Aqui se mostrara la pantalla de game over
-    // Tu compañero conecta el HUD aqui
+        TEXT("%s"), *TextoBadEnding);
+}
+
+void AShooterNaves2025GameMode::MostrarMensajeTemporal(FString Mensaje, float Duracion)
+{
+    MensajeTemporal = Mensaje;
+    TiempoMensajeTemporal = Duracion;
+
+    GetWorldTimerManager().ClearTimer(TimerMensajeTemporal);
+
+    GetWorldTimerManager().SetTimer(
+        TimerMensajeTemporal,
+        this,
+        &AShooterNaves2025GameMode::LimpiarMensajeTemporal,
+        Duracion,
+        false
+    );
+}
+
+void AShooterNaves2025GameMode::LimpiarMensajeTemporal()
+{
+    MensajeTemporal = "";
+    TiempoMensajeTemporal = 0.0f;
+}
+
+void AShooterNaves2025GameMode::BossFinalDestruido()
+{
+    bBossFinalDerrotado = true;
+    BossFinalActual = nullptr;
+
+    DestruirTodosLosEnemigos();
+
+    GoodEnding();
+}
+
+void AShooterNaves2025GameMode::JugadorMurio()
+{
+    if (!bJugando)
+    {
+        return;
+    }
+
+    bJugando = false;
+    GetWorldTimerManager().ClearTimer(TimerSpawn);
+
+    BadEnding();
 }
 
 // Cuantos enemigos hay que destruir segun el nivel
@@ -316,11 +487,11 @@ int32 AShooterNaves2025GameMode::CalcularMetaEnemigos(int32 Nivel)
 {
     switch (Nivel)
     {
-    case 1: return 10;  // 10 livianas
-    case 2: return 15;  // 15 entre livianas y normales
-    case 3: return 20;  // 20 de todos los tipos
-    case 4: return 15;  // Fase 2 empieza
-    case 5: return 15;
+    case 1: return 5;  // 10 livianas
+    case 2: return 8;  // 15 entre livianas y normales
+    case 3: return 12;  // 20 de todos los tipos
+    case 4: return 10;  // Fase 2 empieza
+    case 5: return 12;
     case 6: return 1;   // Solo el boss final
     default: return 10;
     }
@@ -340,5 +511,47 @@ float AShooterNaves2025GameMode::CalcularIntervaloSpawn(int32 Nivel)
     case 5: return 1.5f;
     case 6: return 5.0f; // Boss, solo aparece uno
     default: return 3.0f;
+    }
+}
+
+FString AShooterNaves2025GameMode::ObtenerTextoLorePorNivel(int32 Nivel) const
+{
+    switch (Nivel)
+    {
+    case 1:
+        return TEXT("Nivel 1: La invasion inicia en la alta atmosfera.");
+    case 2:
+        return TEXT("Nivel 2: El enemigo despliega naves livianas mas veloces.");
+    case 3:
+        return TEXT("Nivel 3: Una nave nodriza menor entra al campo de batalla.");
+    case 4:
+        return TEXT("Nivel 4: La segunda fase comienza. Las fuerzas especiales avanzan.");
+    case 5:
+        return TEXT("Nivel 5: La resistencia enemiga se intensifica.");
+    case 6:
+        return TEXT("Nivel 6: El comandante enemigo aparece.");
+    default:
+        return TEXT("");
+    }
+}
+
+FString AShooterNaves2025GameMode::ObtenerBadEndingPorNivel(int32 Nivel) const
+{
+    switch (Nivel)
+    {
+    case 1:
+        return TEXT("BAD ENDING: La invasion inicial supero la defensa.");
+    case 2:
+        return TEXT("BAD ENDING: Las naves livianas rompieron la linea defensiva.");
+    case 3:
+        return TEXT("BAD ENDING: El miniboss abrio paso a la flota enemiga.");
+    case 4:
+        return TEXT("BAD ENDING: Las fuerzas especiales dominaron la atmosfera.");
+    case 5:
+        return TEXT("BAD ENDING: La resistencia humana quedo rodeada.");
+    case 6:
+        return TEXT("BAD ENDING: El boss final conquisto la orbita terrestre.");
+    default:
+        return TEXT("BAD ENDING: La defensa fallo.");
     }
 }

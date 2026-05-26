@@ -109,7 +109,7 @@ void EmptyLinkFunctionForGeneratedCodeMiniBoss() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMiniBoss, 1740617876);
+	IMPLEMENT_CLASS(AMiniBoss, 359613823);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<AMiniBoss>()
 	{
 		return AMiniBoss::StaticClass();

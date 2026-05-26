@@ -7,6 +7,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/StaticMesh.h"
 #include "Nave_Padre.h"
+#include "AsteroideBonus.h"
 
 AShooterNaves2025Projectile::AShooterNaves2025Projectile() 
 {
@@ -46,6 +47,12 @@ void AShooterNaves2025Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* Ot
 		if ((OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 		{
 			OtherComp->AddImpulseAtLocation(GetVelocity() * 20.0f, GetActorLocation());
+		}
+		AAsteroideBonus* Asteroide = Cast<AAsteroideBonus>(OtherActor);
+
+		if (Asteroide != nullptr)
+		{
+			Asteroide->RecibirDanio(Danio);
 		}
 	}
 	Destroy();

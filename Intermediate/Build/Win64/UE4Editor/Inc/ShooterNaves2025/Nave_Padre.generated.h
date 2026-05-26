@@ -16,12 +16,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Padre_h_10_SPARSE_DATA
 #define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Padre_h_10_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execAplicarBuffBoss); \
 	DECLARE_FUNCTION(execMorir); \
 	DECLARE_FUNCTION(execRecibirDanio);
 
 
 #define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Padre_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execAplicarBuffBoss); \
 	DECLARE_FUNCTION(execMorir); \
 	DECLARE_FUNCTION(execRecibirDanio);
 

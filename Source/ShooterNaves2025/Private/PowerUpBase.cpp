@@ -2,6 +2,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "UObject/ConstructorHelpers.h"
 #include "../ShooterNaves2025Pawn.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 APowerUpBase::APowerUpBase()
 {
@@ -50,4 +51,19 @@ void APowerUpBase::OnOverlap(
 void APowerUpBase::AplicarEfecto(AShooterNaves2025Pawn* Jugador)
 {
 	// Clase base no hace nada.
+}
+
+void APowerUpBase::CrearMaterialColor(FLinearColor Color)
+{
+	if (!MeshPowerUp)
+	{
+		return;
+	}
+
+	UMaterialInstanceDynamic* MaterialDinamico = MeshPowerUp->CreateAndSetMaterialInstanceDynamic(0);
+
+	if (MaterialDinamico)
+	{
+		MaterialDinamico->SetVectorParameterValue("Color", Color);
+	}
 }

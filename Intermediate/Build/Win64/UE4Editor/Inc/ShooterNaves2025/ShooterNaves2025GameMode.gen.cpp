@@ -52,6 +52,37 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025GameMode() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Puntuacion_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Puntuacion;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bGameOver_MetaData[];
+#endif
+		static void NewProp_bGameOver_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bGameOver;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bGoodEnding_MetaData[];
+#endif
+		static void NewProp_bGoodEnding_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bGoodEnding;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bFase1Completada_MetaData[];
+#endif
+		static void NewProp_bFase1Completada_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bFase1Completada;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TextoLoreActual_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_TextoLoreActual;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MensajeTemporal_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_MensajeTemporal;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TiempoMensajeTemporal_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_TiempoMensajeTemporal;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TextoBadEnding_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_TextoBadEnding;
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_EnemigosActivos_Inner;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_EnemigosActivos_MetaData[];
@@ -120,6 +151,67 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025GameMode() {}
 	};
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_Puntuacion = { "Puntuacion", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025GameMode, Puntuacion), METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_Puntuacion_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_Puntuacion_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver_MetaData[] = {
+		{ "Category", "Estado" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	void Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver_SetBit(void* Obj)
+	{
+		((AShooterNaves2025GameMode*)Obj)->bGameOver = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver = { "bGameOver", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AShooterNaves2025GameMode), &Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver_SetBit, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding_MetaData[] = {
+		{ "Category", "Estado" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	void Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding_SetBit(void* Obj)
+	{
+		((AShooterNaves2025GameMode*)Obj)->bGoodEnding = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding = { "bGoodEnding", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AShooterNaves2025GameMode), &Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding_SetBit, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada_MetaData[] = {
+		{ "Category", "Estado" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	void Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada_SetBit(void* Obj)
+	{
+		((AShooterNaves2025GameMode*)Obj)->bFase1Completada = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada = { "bFase1Completada", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AShooterNaves2025GameMode), &Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada_SetBit, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoLoreActual_MetaData[] = {
+		{ "Category", "Lore" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoLoreActual = { "TextoLoreActual", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025GameMode, TextoLoreActual), METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoLoreActual_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoLoreActual_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_MensajeTemporal_MetaData[] = {
+		{ "Category", "HUD" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_MensajeTemporal = { "MensajeTemporal", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025GameMode, MensajeTemporal), METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_MensajeTemporal_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_MensajeTemporal_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TiempoMensajeTemporal_MetaData[] = {
+		{ "Category", "HUD" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TiempoMensajeTemporal = { "TiempoMensajeTemporal", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025GameMode, TiempoMensajeTemporal), METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TiempoMensajeTemporal_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TiempoMensajeTemporal_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoBadEnding_MetaData[] = {
+		{ "Category", "Estado" },
+		{ "ModuleRelativePath", "ShooterNaves2025GameMode.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoBadEnding = { "TextoBadEnding", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025GameMode, TextoBadEnding), METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoBadEnding_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoBadEnding_MetaData)) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_EnemigosActivos_Inner = { "EnemigosActivos", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_EnemigosActivos_MetaData[] = {
@@ -135,6 +227,13 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025GameMode() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_MetaEnemigos,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_VidasJugador,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_Puntuacion,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGameOver,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bGoodEnding,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_bFase1Completada,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoLoreActual,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_MensajeTemporal,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TiempoMensajeTemporal,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_TextoBadEnding,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_EnemigosActivos_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025GameMode_Statics::NewProp_EnemigosActivos,
 	};
@@ -165,7 +264,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025GameMode() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShooterNaves2025GameMode, 1697702820);
+	IMPLEMENT_CLASS(AShooterNaves2025GameMode, 2678974741);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<AShooterNaves2025GameMode>()
 	{
 		return AShooterNaves2025GameMode::StaticClass();

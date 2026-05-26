@@ -37,4 +37,6 @@ protected:
 	);
 
 	virtual void AplicarEfecto(AShooterNaves2025Pawn* Jugador);
+
+	void CrearMaterialColor(FLinearColor Color);
 };

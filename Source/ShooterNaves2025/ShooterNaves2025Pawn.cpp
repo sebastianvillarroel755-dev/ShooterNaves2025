@@ -12,7 +12,8 @@
 #include "Engine/StaticMesh.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundBase.h"
-#include "TimerManager.h"
+#include "InputCoreTypes.h"
+#include "ShooterNaves2025GameMode.h"
 
 const FName AShooterNaves2025Pawn::MoveForwardBinding("MoveForward");
 const FName AShooterNaves2025Pawn::MoveRightBinding("MoveRight");
@@ -27,6 +28,10 @@ AShooterNaves2025Pawn::AShooterNaves2025Pawn()
 	RootComponent = ShipMeshComponent;
 	ShipMeshComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
 	ShipMeshComponent->SetStaticMesh(ShipMesh.Object);
+	ShipMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	ShipMeshComponent->SetGenerateOverlapEvents(true);
+	ShipMeshComponent->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+	ShipMeshComponent->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	
 	// Cache our sound effect
 	static ConstructorHelpers::FObjectFinder<USoundBase> FireAudio(TEXT("/Game/TwinStick/Audio/TwinStickFire.TwinStickFire"));
@@ -61,15 +66,25 @@ void AShooterNaves2025Pawn::SetupPlayerInputComponent(class UInputComponent* Pla
 {
 	check(PlayerInputComponent);
 
-	// set up gameplay key bindings
 	PlayerInputComponent->BindAxis(MoveForwardBinding);
 	PlayerInputComponent->BindAxis(MoveRightBinding);
 	PlayerInputComponent->BindAxis(FireForwardBinding);
 	PlayerInputComponent->BindAxis(FireRightBinding);
+
+	PlayerInputComponent->BindAction("RestartLevel", IE_Pressed, this, &AShooterNaves2025Pawn::ReiniciarNivel);
+
+	// Prueba directa: no depende del Action Mapping de Unreal
+	PlayerInputComponent->BindKey(EKeys::R, IE_Pressed, this, &AShooterNaves2025Pawn::ReiniciarNivel);
 }
 
 void AShooterNaves2025Pawn::Tick(float DeltaSeconds)
 {
+
+	if (bEstaMuerto)
+	{
+		return;
+	}
+
 	// Find movement direction
 	const float ForwardValue = GetInputAxisValue(MoveForwardBinding);
 	const float RightValue = GetInputAxisValue(MoveRightBinding);
@@ -106,6 +121,12 @@ void AShooterNaves2025Pawn::Tick(float DeltaSeconds)
 
 void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 {
+
+	if (bEstaMuerto)
+	{
+		return;
+	}
+
 	// If it's ok to fire again
 	if (bCanFire == true)
 	{
@@ -159,11 +180,24 @@ void AShooterNaves2025Pawn::RecibirDanio(float CantidadDanio)
 
 void AShooterNaves2025Pawn::Morir()
 {
+	if (bEstaMuerto)
+	{
+		return;
+	}
+
 	bEstaMuerto = true;
 
 	SetActorHiddenInGame(true);
 	SetActorEnableCollision(false);
-	SetActorTickEnabled(false);
+
+	AShooterNaves2025GameMode* GameMode = Cast<AShooterNaves2025GameMode>(
+		UGameplayStatics::GetGameMode(GetWorld())
+	);
+
+	if (GameMode)
+	{
+		GameMode->JugadorMurio();
+	}
 }
 
 void AShooterNaves2025Pawn::Curar(float Cantidad)
@@ -222,4 +256,29 @@ void AShooterNaves2025Pawn::QuitarVelocidadExtra()
 	MoveSpeed = VelocidadBase;
 
 	UE_LOG(LogTemp, Warning, TEXT("PowerUp de velocidad terminado"));
+}
+
+void AShooterNaves2025Pawn::ReiniciarNivel()
+{
+	UE_LOG(LogTemp, Warning, TEXT("TECLA R PRESIONADA - Reiniciando nivel"));
+
+	UWorld* World = GetWorld();
+
+	if (!World)
+	{
+		UE_LOG(LogTemp, Error, TEXT("No se pudo reiniciar: World es nullptr"));
+		return;
+	}
+
+	FString NombreNivel = UGameplayStatics::GetCurrentLevelName(World, true);
+
+	UE_LOG(LogTemp, Warning, TEXT("Nombre del nivel detectado: %s"), *NombreNivel);
+
+	if (NombreNivel.IsEmpty())
+	{
+		UE_LOG(LogTemp, Error, TEXT("No se pudo reiniciar: nombre de nivel vacio"));
+		return;
+	}
+
+	UGameplayStatics::OpenLevel(World, FName(*NombreNivel));
 }

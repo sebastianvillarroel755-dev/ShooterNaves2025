@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "GameFramework/Pawn.h"
 #include "ShooterNaves2025Pawn.generated.h"
 
 UCLASS(Blueprintable)
@@ -88,6 +88,8 @@ public:
 
 	/* Handler for the fire timer expiry */
 	void ShotTimerExpired();
+
+	void ReiniciarNivel();
 
 	// Static names for axis bindings
 	static const FName MoveForwardBinding;

@@ -39,6 +39,20 @@ public:
     UPROPERTY(BlueprintReadOnly, Category = "Jugador")
     int32 Puntuacion;
 
+    UPROPERTY(BlueprintReadOnly, Category = "Estado")
+    bool bGameOver = false;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Estado")
+    bool bGoodEnding = false;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Estado")
+    bool bFase1Completada = false;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Lore")
+    FString TextoLoreActual;
+
+    FString ObtenerTextoLorePorNivel(int32 Nivel) const;
+
     // ── METODOS PUBLICOS ──────────────────────────────────────────
 
     // Se llama cuando el jugador destruye un enemigo
@@ -51,6 +65,23 @@ public:
 
     // Retorna true si el juego sigue activo
     bool EstaJugando() const { return bJugando; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "HUD")
+    FString MensajeTemporal;
+
+    UPROPERTY(BlueprintReadOnly, Category = "HUD")
+    float TiempoMensajeTemporal = 0.0f;
+
+    void MostrarMensajeTemporal(FString Mensaje, float Duracion = 3.0f);
+
+    void BossFinalDestruido();
+
+    UPROPERTY(BlueprintReadOnly, Category = "Estado")
+    FString TextoBadEnding;
+
+    FString ObtenerBadEndingPorNivel(int32 Nivel) const;
+
+    void JugadorMurio();
 
 private:
     // ── CONTENEDOR DE ENEMIGOS ACTIVOS ────────────────────────────
@@ -103,4 +134,14 @@ private:
     int32 EnemigosParaDebilitarMiniBoss = 5;
     int32 EnemigosMuertosNivelActual = 0;
     int32 EnemigosMuertosDesdeMiniBoss = 0;
+    int32 EnemigosGeneradosNivel6 = 0;
+    int32 MaxEnemigosNivel6 = 20;
+
+    FTimerHandle TimerMensajeTemporal;
+
+    void LimpiarMensajeTemporal();
+
+    bool bBossFinalSpawned = false;
+    bool bBossFinalDerrotado = false;
+    class ABossFinal* BossFinalActual = nullptr;
 };

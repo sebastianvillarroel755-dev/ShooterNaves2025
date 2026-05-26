@@ -20,6 +20,15 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_APawn_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ANave_Padre::execAplicarBuffBoss)
+	{
+		P_GET_PROPERTY(FFloatProperty,Z_Param_MultiplicadorVida);
+		P_GET_PROPERTY(FFloatProperty,Z_Param_MultiplicadorResistencia);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AplicarBuffBoss(Z_Param_MultiplicadorVida,Z_Param_MultiplicadorResistencia);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ANave_Padre::execMorir)
 	{
 		P_FINISH;
@@ -39,10 +48,47 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 	{
 		UClass* Class = ANave_Padre::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "AplicarBuffBoss", &ANave_Padre::execAplicarBuffBoss },
 			{ "Morir", &ANave_Padre::execMorir },
 			{ "RecibirDanio", &ANave_Padre::execRecibirDanio },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics
+	{
+		struct Nave_Padre_eventAplicarBuffBoss_Parms
+		{
+			float MultiplicadorVida;
+			float MultiplicadorResistencia;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_MultiplicadorVida;
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_MultiplicadorResistencia;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::NewProp_MultiplicadorVida = { "MultiplicadorVida", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Nave_Padre_eventAplicarBuffBoss_Parms, MultiplicadorVida), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::NewProp_MultiplicadorResistencia = { "MultiplicadorResistencia", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Nave_Padre_eventAplicarBuffBoss_Parms, MultiplicadorResistencia), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::NewProp_MultiplicadorVida,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::NewProp_MultiplicadorResistencia,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Nave_Padre.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ANave_Padre, nullptr, "AplicarBuffBoss", nullptr, nullptr, sizeof(Nave_Padre_eventAplicarBuffBoss_Parms), Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ANave_Padre_Morir_Statics
 	{
@@ -149,9 +195,19 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_MultiplicadorDanioRecibido;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bEsBossFinal_MetaData[];
+#endif
+		static void NewProp_bEsBossFinal_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bEsBossFinal;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Jugador_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Jugador;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bBuffActivo_MetaData[];
+#endif
+		static void NewProp_bBuffActivo_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bBuffActivo;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -161,6 +217,7 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_ShooterNaves2025,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ANave_Padre_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ANave_Padre_AplicarBuffBoss, "AplicarBuffBoss" }, // 1291488358
 		{ &Z_Construct_UFunction_ANave_Padre_Morir, "Morir" }, // 1693641474
 		{ &Z_Construct_UFunction_ANave_Padre_RecibirDanio, "RecibirDanio" }, // 3208155039
 	};
@@ -247,11 +304,33 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANave_Padre_Statics::NewProp_MultiplicadorDanioRecibido = { "MultiplicadorDanioRecibido", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ANave_Padre, MultiplicadorDanioRecibido), METADATA_PARAMS(Z_Construct_UClass_ANave_Padre_Statics::NewProp_MultiplicadorDanioRecibido_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ANave_Padre_Statics::NewProp_MultiplicadorDanioRecibido_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal_MetaData[] = {
+		{ "Category", "Nave_Padre" },
+		{ "ModuleRelativePath", "Public/Nave_Padre.h" },
+	};
+#endif
+	void Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal_SetBit(void* Obj)
+	{
+		((ANave_Padre*)Obj)->bEsBossFinal = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal = { "bEsBossFinal", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ANave_Padre), &Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal_SetBit, METADATA_PARAMS(Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ANave_Padre_Statics::NewProp_Jugador_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Nave_Padre.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANave_Padre_Statics::NewProp_Jugador = { "Jugador", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ANave_Padre, Jugador), Z_Construct_UClass_APawn_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ANave_Padre_Statics::NewProp_Jugador_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ANave_Padre_Statics::NewProp_Jugador_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo_MetaData[] = {
+		{ "Category", "Buff" },
+		{ "ModuleRelativePath", "Public/Nave_Padre.h" },
+	};
+#endif
+	void Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo_SetBit(void* Obj)
+	{
+		((ANave_Padre*)Obj)->bBuffActivo = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo = { "bBuffActivo", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ANave_Padre), &Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo_SetBit, METADATA_PARAMS(Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANave_Padre_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_Vida,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_Velocidad,
@@ -262,7 +341,9 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_MeshNave,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsMiniBoss,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_MultiplicadorDanioRecibido,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_bEsBossFinal,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_Jugador,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Padre_Statics::NewProp_bBuffActivo,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ANave_Padre_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ANave_Padre>::IsAbstract,
@@ -291,7 +372,7 @@ void EmptyLinkFunctionForGeneratedCodeNave_Padre() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANave_Padre, 3916560850);
+	IMPLEMENT_CLASS(ANave_Padre, 1161679729);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<ANave_Padre>()
 	{
 		return ANave_Padre::StaticClass();

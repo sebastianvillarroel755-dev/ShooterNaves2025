@@ -45,6 +45,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Defensa")
 	float MultiplicadorDanioRecibido = 1.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bEsBossFinal = false;
+
 	UPROPERTY()
 	class APawn* Jugador;
 
@@ -56,6 +59,11 @@ public:
 
 	void MoverHaciaJugador(float DeltaTime);
 
-	void HacerDanioAlJugador();
+	void HacerDanioAlJugador(); UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Buff")
+	bool bBuffActivo = false;
+
+	UFUNCTION(BlueprintCallable)
+	void AplicarBuffBoss(float MultiplicadorVida, float MultiplicadorResistencia);
+
 
 };
