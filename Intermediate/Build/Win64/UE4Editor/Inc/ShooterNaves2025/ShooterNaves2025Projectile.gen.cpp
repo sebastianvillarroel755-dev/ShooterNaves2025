@@ -17,13 +17,30 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 	SHOOTERNAVES2025_API UClass* Z_Construct_UClass_AShooterNaves2025Projectile();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_ShooterNaves2025();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AShooterNaves2025Projectile::execDesactivarProyectil)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DesactivarProyectil();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AShooterNaves2025Projectile::execActivarProyectil)
+	{
+		P_GET_STRUCT(FVector,Z_Param_NuevaUbicacion);
+		P_GET_STRUCT(FRotator,Z_Param_NuevaRotacion);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ActivarProyectil(Z_Param_NuevaUbicacion,Z_Param_NuevaRotacion);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AShooterNaves2025Projectile::execOnHit)
 	{
 		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComp);
@@ -40,9 +57,69 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 	{
 		UClass* Class = AShooterNaves2025Projectile::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "ActivarProyectil", &AShooterNaves2025Projectile::execActivarProyectil },
+			{ "DesactivarProyectil", &AShooterNaves2025Projectile::execDesactivarProyectil },
 			{ "OnHit", &AShooterNaves2025Projectile::execOnHit },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics
+	{
+		struct ShooterNaves2025Projectile_eventActivarProyectil_Parms
+		{
+			FVector NuevaUbicacion;
+			FRotator NuevaRotacion;
+		};
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_NuevaUbicacion;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_NuevaRotacion;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::NewProp_NuevaUbicacion = { "NuevaUbicacion", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ShooterNaves2025Projectile_eventActivarProyectil_Parms, NuevaUbicacion), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::NewProp_NuevaRotacion = { "NuevaRotacion", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ShooterNaves2025Projectile_eventActivarProyectil_Parms, NuevaRotacion), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::NewProp_NuevaUbicacion,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::NewProp_NuevaRotacion,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ShooterNaves2025Projectile.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterNaves2025Projectile, nullptr, "ActivarProyectil", nullptr, nullptr, sizeof(ShooterNaves2025Projectile_eventActivarProyectil_Parms), Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ShooterNaves2025Projectile.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterNaves2025Projectile, nullptr, "DesactivarProyectil", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics
 	{
@@ -103,9 +180,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics::Function_MetaDataParams[] = {
-		{ "Comment", "/** Function to handle the projectile hitting something */" },
 		{ "ModuleRelativePath", "ShooterNaves2025Projectile.h" },
-		{ "ToolTip", "Function to handle the projectile hitting something" },
 	};
 #endif
 	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterNaves2025Projectile, nullptr, "OnHit", nullptr, nullptr, sizeof(ShooterNaves2025Projectile_eventOnHit_Parms), Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit_Statics::Function_MetaDataParams)) };
@@ -138,6 +213,11 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ProjectileMovement;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bActivo_MetaData[];
+#endif
+		static void NewProp_bActivo_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bActivo;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Danio_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Danio;
@@ -150,7 +230,9 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_ShooterNaves2025,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AShooterNaves2025Projectile_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit, "OnHit" }, // 3896299779
+		{ &Z_Construct_UFunction_AShooterNaves2025Projectile_ActivarProyectil, "ActivarProyectil" }, // 866487969
+		{ &Z_Construct_UFunction_AShooterNaves2025Projectile_DesactivarProyectil, "DesactivarProyectil" }, // 19014959
+		{ &Z_Construct_UFunction_AShooterNaves2025Projectile_OnHit, "OnHit" }, // 3336013570
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025Projectile_Statics::Class_MetaDataParams[] = {
@@ -162,10 +244,8 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMesh_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Projectile" },
-		{ "Comment", "/** Sphere collision component */" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ShooterNaves2025Projectile.h" },
-		{ "ToolTip", "Sphere collision component" },
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMesh = { "ProjectileMesh", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025Projectile, ProjectileMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMesh_MetaData)) };
@@ -173,13 +253,22 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMovement_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Movement" },
-		{ "Comment", "/** Projectile movement component */" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ShooterNaves2025Projectile.h" },
-		{ "ToolTip", "Projectile movement component" },
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMovement = { "ProjectileMovement", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025Projectile, ProjectileMovement), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMovement_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMovement_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo_MetaData[] = {
+		{ "Category", "Pool" },
+		{ "ModuleRelativePath", "ShooterNaves2025Projectile.h" },
+	};
+#endif
+	void Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo_SetBit(void* Obj)
+	{
+		((AShooterNaves2025Projectile*)Obj)->bActivo = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo = { "bActivo", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AShooterNaves2025Projectile), &Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo_SetBit, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_Danio_MetaData[] = {
 		{ "Category", "Damage" },
@@ -190,6 +279,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterNaves2025Projectile_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_ProjectileMovement,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_bActivo,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Projectile_Statics::NewProp_Danio,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AShooterNaves2025Projectile_Statics::StaticCppClassTypeInfo = {
@@ -219,7 +309,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Projectile() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShooterNaves2025Projectile, 2309543333);
+	IMPLEMENT_CLASS(AShooterNaves2025Projectile, 2840464658);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<AShooterNaves2025Projectile>()
 	{
 		return AShooterNaves2025Projectile::StaticClass();

@@ -290,6 +290,10 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Pawn() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FireSound_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_FireSound;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CantidadProyectilesPool_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_CantidadProyectilesPool;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -415,6 +419,13 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Pawn() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_FireSound = { "FireSound", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025Pawn, FireSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_FireSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_FireSound_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_CantidadProyectilesPool_MetaData[] = {
+		{ "Category", "Pool" },
+		{ "ModuleRelativePath", "ShooterNaves2025Pawn.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_CantidadProyectilesPool = { "CantidadProyectilesPool", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterNaves2025Pawn, CantidadProyectilesPool), METADATA_PARAMS(Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_CantidadProyectilesPool_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_CantidadProyectilesPool_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterNaves2025Pawn_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_ShipMeshComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_CameraComponent,
@@ -427,6 +438,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Pawn() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_FireRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_MoveSpeed,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_FireSound,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterNaves2025Pawn_Statics::NewProp_CantidadProyectilesPool,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AShooterNaves2025Pawn_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AShooterNaves2025Pawn>::IsAbstract,
@@ -455,7 +467,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterNaves2025Pawn() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShooterNaves2025Pawn, 2511724482);
+	IMPLEMENT_CLASS(AShooterNaves2025Pawn, 1127456382);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<AShooterNaves2025Pawn>()
 	{
 		return AShooterNaves2025Pawn::StaticClass();

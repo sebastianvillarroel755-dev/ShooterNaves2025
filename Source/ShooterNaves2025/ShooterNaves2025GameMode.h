@@ -6,6 +6,15 @@ class AMiniBoss;
 // GameMode principal del juego
 // Maneja los 6 niveles, las oleadas de enemigos,
 // el sistema de vidas y la logica de victoria/derrota
+UENUM(BlueprintType)
+enum class EEstadoJuego : uint8
+{
+    Jugando UMETA(DisplayName = "Jugando"),
+    GameOver UMETA(DisplayName = "Game Over"),
+    GoodEnding UMETA(DisplayName = "Good Ending"),
+    FaseCompletada UMETA(DisplayName = "Fase Completada")
+};
+
 UCLASS(MinimalAPI)
 
 class AShooterNaves2025GameMode : public AGameModeBase
@@ -82,6 +91,12 @@ public:
     FString ObtenerBadEndingPorNivel(int32 Nivel) const;
 
     void JugadorMurio();
+
+    UPROPERTY(BlueprintReadOnly, Category = "Estado")
+    EEstadoJuego EstadoActual = EEstadoJuego::Jugando;
+
+    UFUNCTION(BlueprintCallable)
+    void CambiarEstado(EEstadoJuego NuevoEstado);
 
 private:
     // ── CONTENEDOR DE ENEMIGOS ACTIVOS ────────────────────────────

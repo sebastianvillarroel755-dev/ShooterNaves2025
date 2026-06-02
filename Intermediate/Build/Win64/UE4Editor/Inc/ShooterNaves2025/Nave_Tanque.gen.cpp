@@ -35,6 +35,10 @@ void EmptyLinkFunctionForGeneratedCodeNave_Tanque() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TiempoEntreDisparos_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_TiempoEntreDisparos;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CantidadProyectilesPool_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_CantidadProyectilesPool;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -56,8 +60,16 @@ void EmptyLinkFunctionForGeneratedCodeNave_Tanque() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANave_Tanque_Statics::NewProp_TiempoEntreDisparos = { "TiempoEntreDisparos", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ANave_Tanque, TiempoEntreDisparos), METADATA_PARAMS(Z_Construct_UClass_ANave_Tanque_Statics::NewProp_TiempoEntreDisparos_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ANave_Tanque_Statics::NewProp_TiempoEntreDisparos_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ANave_Tanque_Statics::NewProp_CantidadProyectilesPool_MetaData[] = {
+		{ "Category", "Pool" },
+		{ "ModuleRelativePath", "Public/Nave_Tanque.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_ANave_Tanque_Statics::NewProp_CantidadProyectilesPool = { "CantidadProyectilesPool", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ANave_Tanque, CantidadProyectilesPool), METADATA_PARAMS(Z_Construct_UClass_ANave_Tanque_Statics::NewProp_CantidadProyectilesPool_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ANave_Tanque_Statics::NewProp_CantidadProyectilesPool_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANave_Tanque_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Tanque_Statics::NewProp_TiempoEntreDisparos,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANave_Tanque_Statics::NewProp_CantidadProyectilesPool,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ANave_Tanque_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ANave_Tanque>::IsAbstract,
@@ -86,7 +98,7 @@ void EmptyLinkFunctionForGeneratedCodeNave_Tanque() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ANave_Tanque, 3230257005);
+	IMPLEMENT_CLASS(ANave_Tanque, 117606386);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<ANave_Tanque>()
 	{
 		return ANave_Tanque::StaticClass();

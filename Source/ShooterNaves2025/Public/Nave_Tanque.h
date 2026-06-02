@@ -2,7 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Nave_Padre.h"
+#include "TObjectPool.h"
 #include "Nave_Tanque.generated.h"
+
+class AProyectilEnemigo;
 
 UCLASS()
 class SHOOTERNAVES2025_API ANave_Tanque : public ANave_Padre
@@ -22,4 +25,9 @@ private:
 	float TiempoEntreDisparos = 3.0f;
 
 	void Disparar();
+
+	TObjectPool<AProyectilEnemigo> PoolProyectiles;
+
+	UPROPERTY(EditAnywhere, Category = "Pool")
+	int32 CantidadProyectilesPool = 8;
 };

@@ -4,6 +4,14 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/Canvas.h"
 
+void AShooterHUD::BeginPlay()
+{
+	Super::BeginPlay();
+
+	JugadorCache = Cast<AShooterNaves2025Pawn>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	GameModeCache = Cast<AShooterNaves2025GameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+}
+
 void AShooterHUD::DrawHUD()
 {
 	Super::DrawHUD();
@@ -13,13 +21,18 @@ void AShooterHUD::DrawHUD()
 		return;
 	}
 
-	AShooterNaves2025Pawn* Jugador = Cast<AShooterNaves2025Pawn>(
-		UGameplayStatics::GetPlayerPawn(GetWorld(), 0)
-	);
+	if (!JugadorCache)
+	{
+		JugadorCache = Cast<AShooterNaves2025Pawn>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	}
 
-	AShooterNaves2025GameMode* GameMode = Cast<AShooterNaves2025GameMode>(
-		UGameplayStatics::GetGameMode(GetWorld())
-	);
+	if (!GameModeCache)
+	{
+		GameModeCache = Cast<AShooterNaves2025GameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	}
+
+	AShooterNaves2025Pawn* Jugador = JugadorCache;
+	AShooterNaves2025GameMode* GameMode = GameModeCache;
 
 	float X = 50.0f;
 	float Y = 50.0f;

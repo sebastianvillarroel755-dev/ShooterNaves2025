@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "TObjectPool.h"
 #include "ShooterNaves2025Pawn.generated.h"
 
 UCLASS(Blueprintable)
@@ -79,6 +80,7 @@ public:
 	class USoundBase* FireSound;
 
 	// Begin Actor Interface
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End Actor Interface
@@ -96,6 +98,16 @@ public:
 	static const FName MoveRightBinding;
 	static const FName FireForwardBinding;
 	static const FName FireRightBinding;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pool")
+	int32 CantidadProyectilesPool = 30;
+
+	TObjectPool<class AShooterNaves2025Projectile> PoolProyectiles;
+
+	void CrearPoolProyectiles();
+
+	AShooterNaves2025Projectile* ObtenerProyectilDisponible();
+
 
 private:
 

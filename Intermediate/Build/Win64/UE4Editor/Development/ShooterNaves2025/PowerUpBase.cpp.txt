@@ -2,4 +2,5 @@ D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Development\ShooterNaves2
 D:\ShooterNaves2025\Source\ShooterNaves2025\Public\PowerUpBase.h
 D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Inc\ShooterNaves2025\PowerUpBase.generated.h
 D:\ShooterNaves2025\Source\ShooterNaves2025\Private\../ShooterNaves2025Pawn.h
+D:\ShooterNaves2025\Source\TObjectPool.h
 D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Inc\ShooterNaves2025\ShooterNaves2025Pawn.generated.h

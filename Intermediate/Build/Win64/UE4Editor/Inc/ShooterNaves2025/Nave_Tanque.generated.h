@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SHOOTERNAVES2025_Nave_Tanque_generated_h
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_SPARSE_DATA
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_RPC_WRAPPERS
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_RPC_WRAPPERS_NO_PURE_DECLS
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_INCLASS_NO_PURE_DECLS \
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_SPARSE_DATA
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_RPC_WRAPPERS
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_RPC_WRAPPERS_NO_PURE_DECLS
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesANave_Tanque(); \
 	friend struct Z_Construct_UClass_ANave_Tanque_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(ANave_Tanque)
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_INCLASS \
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_INCLASS \
 private: \
 	static void StaticRegisterNativesANave_Tanque(); \
 	friend struct Z_Construct_UClass_ANave_Tanque_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(ANave_Tanque)
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_STANDARD_CONSTRUCTORS \
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ANave_Tanque(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ANave_Tanque) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_ENHANCED_CONSTRUCTORS \
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ANave_Tanque(ANave_Tanque&&); \
@@ -58,31 +58,32 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ANave_Tanque)
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__TiempoEntreDisparos() { return STRUCT_OFFSET(ANave_Tanque, TiempoEntreDisparos); }
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__TiempoEntreDisparos() { return STRUCT_OFFSET(ANave_Tanque, TiempoEntreDisparos); } \
+	FORCEINLINE static uint32 __PPO__CantidadProyectilesPool() { return STRUCT_OFFSET(ANave_Tanque, CantidadProyectilesPool); }
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_7_PROLOG
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_GENERATED_BODY_LEGACY \
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_PROLOG
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_PRIVATE_PROPERTY_OFFSET \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_SPARSE_DATA \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_RPC_WRAPPERS \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_INCLASS \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_STANDARD_CONSTRUCTORS \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_PRIVATE_PROPERTY_OFFSET \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_SPARSE_DATA \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_RPC_WRAPPERS \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_INCLASS \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_GENERATED_BODY \
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_PRIVATE_PROPERTY_OFFSET \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_SPARSE_DATA \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_INCLASS_NO_PURE_DECLS \
-	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_10_ENHANCED_CONSTRUCTORS \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_PRIVATE_PROPERTY_OFFSET \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_SPARSE_DATA \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_INCLASS_NO_PURE_DECLS \
+	ShooterNaves2025_Source_ShooterNaves2025_Public_Nave_Tanque_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

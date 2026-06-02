@@ -2,7 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "Nave_Padre.h"
+#include "TObjectPool.h"
+
 #include "Nave_Francotirador.generated.h"
+
+class AProyectilEnemigo;
 
 UCLASS()
 class SHOOTERNAVES2025_API ANave_Francotirador : public ANave_Padre
@@ -30,4 +34,9 @@ private:
 
 	void Disparar();
 	void MantenerDistancia(float DeltaTime);
+
+	TObjectPool<AProyectilEnemigo> PoolProyectiles;
+
+	UPROPERTY(EditAnywhere, Category = "Pool")
+	int32 CantidadProyectilesPool = 10;
 };

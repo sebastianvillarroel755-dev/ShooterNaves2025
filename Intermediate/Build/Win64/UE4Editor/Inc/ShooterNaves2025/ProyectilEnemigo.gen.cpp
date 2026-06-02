@@ -17,12 +17,30 @@ void EmptyLinkFunctionForGeneratedCodeProyectilEnemigo() {}
 	SHOOTERNAVES2025_API UClass* Z_Construct_UClass_AProyectilEnemigo();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_ShooterNaves2025();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AProyectilEnemigo::execDesactivarProyectil)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DesactivarProyectil();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AProyectilEnemigo::execActivarProyectil)
+	{
+		P_GET_STRUCT(FVector,Z_Param_NuevaUbicacion);
+		P_GET_STRUCT(FRotator,Z_Param_NuevaRotacion);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ActivarProyectil(Z_Param_NuevaUbicacion,Z_Param_NuevaRotacion);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AProyectilEnemigo::execOnOverlap)
 	{
 		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OverlappedComp);
@@ -40,9 +58,69 @@ void EmptyLinkFunctionForGeneratedCodeProyectilEnemigo() {}
 	{
 		UClass* Class = AProyectilEnemigo::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "ActivarProyectil", &AProyectilEnemigo::execActivarProyectil },
+			{ "DesactivarProyectil", &AProyectilEnemigo::execDesactivarProyectil },
 			{ "OnOverlap", &AProyectilEnemigo::execOnOverlap },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics
+	{
+		struct ProyectilEnemigo_eventActivarProyectil_Parms
+		{
+			FVector NuevaUbicacion;
+			FRotator NuevaRotacion;
+		};
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_NuevaUbicacion;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_NuevaRotacion;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::NewProp_NuevaUbicacion = { "NuevaUbicacion", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ProyectilEnemigo_eventActivarProyectil_Parms, NuevaUbicacion), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::NewProp_NuevaRotacion = { "NuevaRotacion", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ProyectilEnemigo_eventActivarProyectil_Parms, NuevaRotacion), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::NewProp_NuevaUbicacion,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::NewProp_NuevaRotacion,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ProyectilEnemigo.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AProyectilEnemigo, nullptr, "ActivarProyectil", nullptr, nullptr, sizeof(ProyectilEnemigo_eventActivarProyectil_Parms), Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ProyectilEnemigo.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AProyectilEnemigo, nullptr, "DesactivarProyectil", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AProyectilEnemigo_OnOverlap_Statics
 	{
@@ -148,6 +226,11 @@ void EmptyLinkFunctionForGeneratedCodeProyectilEnemigo() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Danio_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Danio;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bActivo_MetaData[];
+#endif
+		static void NewProp_bActivo_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bActivo;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -157,6 +240,8 @@ void EmptyLinkFunctionForGeneratedCodeProyectilEnemigo() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_ShooterNaves2025,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AProyectilEnemigo_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AProyectilEnemigo_ActivarProyectil, "ActivarProyectil" }, // 3648120388
+		{ &Z_Construct_UFunction_AProyectilEnemigo_DesactivarProyectil, "DesactivarProyectil" }, // 3293172112
 		{ &Z_Construct_UFunction_AProyectilEnemigo_OnOverlap, "OnOverlap" }, // 424438317
 	};
 #if WITH_METADATA
@@ -188,10 +273,22 @@ void EmptyLinkFunctionForGeneratedCodeProyectilEnemigo() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_Danio = { "Danio", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProyectilEnemigo, Danio), METADATA_PARAMS(Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_Danio_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_Danio_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo_MetaData[] = {
+		{ "Category", "Pool" },
+		{ "ModuleRelativePath", "Public/ProyectilEnemigo.h" },
+	};
+#endif
+	void Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo_SetBit(void* Obj)
+	{
+		((AProyectilEnemigo*)Obj)->bActivo = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo = { "bActivo", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AProyectilEnemigo), &Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo_SetBit, METADATA_PARAMS(Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProyectilEnemigo_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_MeshProyectil,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_MovimientoProyectil,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_Danio,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProyectilEnemigo_Statics::NewProp_bActivo,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AProyectilEnemigo_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AProyectilEnemigo>::IsAbstract,
@@ -220,7 +317,7 @@ void EmptyLinkFunctionForGeneratedCodeProyectilEnemigo() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProyectilEnemigo, 3127268935);
+	IMPLEMENT_CLASS(AProyectilEnemigo, 4056808986);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<AProyectilEnemigo>()
 	{
 		return AProyectilEnemigo::StaticClass();

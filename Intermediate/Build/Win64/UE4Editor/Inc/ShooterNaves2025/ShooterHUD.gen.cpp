@@ -17,6 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeShooterHUD() {}
 	SHOOTERNAVES2025_API UClass* Z_Construct_UClass_AShooterHUD();
 	ENGINE_API UClass* Z_Construct_UClass_AHUD();
 	UPackage* Z_Construct_UPackage__Script_ShooterNaves2025();
+	SHOOTERNAVES2025_API UClass* Z_Construct_UClass_AShooterNaves2025Pawn_NoRegister();
+	SHOOTERNAVES2025_API UClass* Z_Construct_UClass_AShooterNaves2025GameMode_NoRegister();
 // End Cross Module References
 	void AShooterHUD::StaticRegisterNativesAShooterHUD()
 	{
@@ -31,6 +33,15 @@ void EmptyLinkFunctionForGeneratedCodeShooterHUD() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_JugadorCache_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_JugadorCache;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_GameModeCache_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_GameModeCache;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -46,6 +57,22 @@ void EmptyLinkFunctionForGeneratedCodeShooterHUD() {}
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterHUD_Statics::NewProp_JugadorCache_MetaData[] = {
+		{ "ModuleRelativePath", "Public/ShooterHUD.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterHUD_Statics::NewProp_JugadorCache = { "JugadorCache", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterHUD, JugadorCache), Z_Construct_UClass_AShooterNaves2025Pawn_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShooterHUD_Statics::NewProp_JugadorCache_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterHUD_Statics::NewProp_JugadorCache_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterHUD_Statics::NewProp_GameModeCache_MetaData[] = {
+		{ "ModuleRelativePath", "Public/ShooterHUD.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterHUD_Statics::NewProp_GameModeCache = { "GameModeCache", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterHUD, GameModeCache), Z_Construct_UClass_AShooterNaves2025GameMode_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShooterHUD_Statics::NewProp_GameModeCache_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterHUD_Statics::NewProp_GameModeCache_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterHUD_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterHUD_Statics::NewProp_JugadorCache,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterHUD_Statics::NewProp_GameModeCache,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AShooterHUD_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AShooterHUD>::IsAbstract,
 	};
@@ -55,11 +82,11 @@ void EmptyLinkFunctionForGeneratedCodeShooterHUD() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_AShooterHUD_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_AShooterHUD_Statics::PropPointers),
 		0,
 		0x009002ACu,
 		METADATA_PARAMS(Z_Construct_UClass_AShooterHUD_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterHUD_Statics::Class_MetaDataParams))
@@ -73,7 +100,7 @@ void EmptyLinkFunctionForGeneratedCodeShooterHUD() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShooterHUD, 3251820138);
+	IMPLEMENT_CLASS(AShooterHUD, 169620577);
 	template<> SHOOTERNAVES2025_API UClass* StaticClass<AShooterHUD>()
 	{
 		return AShooterHUD::StaticClass();

@@ -1,38 +1,56 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "TimerManager.h"
 #include "ShooterNaves2025Projectile.generated.h"
 
 class UProjectileMovementComponent;
 class UStaticMeshComponent;
 
-UCLASS(config=Game)
+UCLASS(config = Game)
 class AShooterNaves2025Projectile : public AActor
 {
 	GENERATED_BODY()
 
-	/** Sphere collision component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* ProjectileMesh;
 
-	/** Projectile movement component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
+	UPROPERTY(VisibleAnywhere, Category = "Pool")
+	bool bActivo = false;
+
 public:
+
 	AShooterNaves2025Projectile();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	float Danio = 25.0f;
-	/** Function to handle the projectile hitting something */
+
 	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	void OnHit(
+		UPrimitiveComponent* HitComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		FVector NormalImpulse,
+		const FHitResult& Hit
+	);
 
-	/** Returns ProjectileMesh subobject **/
 	FORCEINLINE UStaticMeshComponent* GetProjectileMesh() const { return ProjectileMesh; }
-	/** Returns ProjectileMovement subobject **/
-	FORCEINLINE UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
-};
 
+	FORCEINLINE UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+
+	UFUNCTION(BlueprintCallable)
+	void ActivarProyectil(FVector NuevaUbicacion, FRotator NuevaRotacion);
+
+	UFUNCTION(BlueprintCallable)
+	void DesactivarProyectil();
+
+	bool EstaActivo() const { return bActivo; }
+
+private:
+
+	FTimerHandle TimerDesactivar;
+};

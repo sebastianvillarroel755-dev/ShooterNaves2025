@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "TimerManager.h"
 #include "ProyectilEnemigo.generated.h"
 
 UCLASS()
@@ -30,4 +31,18 @@ public:
 		bool bFromSweep,
 		const FHitResult& SweepResult
 	);
+
+	UFUNCTION(BlueprintCallable)
+	void ActivarProyectil(FVector NuevaUbicacion, FRotator NuevaRotacion);
+
+	UFUNCTION(BlueprintCallable)
+	void DesactivarProyectil();
+
+	bool EstaActivo() const { return bActivo; }
+
+private:
+	UPROPERTY(VisibleAnywhere, Category = "Pool")
+	bool bActivo = false;
+
+	FTimerHandle TimerDesactivar;
 };

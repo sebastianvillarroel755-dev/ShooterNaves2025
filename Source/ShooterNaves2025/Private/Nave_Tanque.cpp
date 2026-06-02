@@ -18,6 +18,12 @@ void ANave_Tanque::BeginPlay()
 {
 	Super::BeginPlay();
 
+	PoolProyectiles.Inicializar(
+		GetWorld(),
+		CantidadProyectilesPool,
+		FVector(0.f, 0.f, -5000.f)
+	);
+
 	GetWorldTimerManager().SetTimer(
 		TimerDisparo,
 		this,
@@ -45,17 +51,14 @@ void ANave_Tanque::Disparar()
 	FRotator RotacionDisparo = Direccion.Rotation();
 	FVector SpawnLocation = GetActorLocation() + RotacionDisparo.RotateVector(FVector(140.0f, 0.0f, 0.0f));
 
-	AProyectilEnemigo* Bala = GetWorld()->SpawnActor<AProyectilEnemigo>(
-		AProyectilEnemigo::StaticClass(),
-		SpawnLocation,
-		RotacionDisparo
-	);
+	AProyectilEnemigo* Bala = PoolProyectiles.ObtenerDisponible(GetWorld());
 
 	if (Bala)
 	{
-		Bala->Danio = 45.0f;
-		Bala->MovimientoProyectil->InitialSpeed = 900.0f;
-		Bala->MovimientoProyectil->MaxSpeed = 900.0f;
-		Bala->MeshProyectil->SetWorldScale3D(FVector(0.45f, 0.45f, 0.45f));
+		Bala->SetOwner(this);
+		Bala->Danio = 35.0f;
+		Bala->MovimientoProyectil->InitialSpeed = 1800.0f;
+		Bala->MovimientoProyectil->MaxSpeed = 1800.0f;
+		Bala->ActivarProyectil(SpawnLocation, RotacionDisparo);
 	}
 }

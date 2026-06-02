@@ -141,7 +141,18 @@ void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 			if (World != nullptr)
 			{
 				// spawn the projectile
-				World->SpawnActor<AShooterNaves2025Projectile>(SpawnLocation, FireRotation);
+				AShooterNaves2025Projectile* Proyectil = ObtenerProyectilDisponible();
+
+				if (Proyectil)
+				{
+					Proyectil->SetOwner(this);
+					Proyectil->Danio = 25.0f * MultiplicadorDanio;
+					Proyectil->ActivarProyectil(SpawnLocation, FireRotation);
+				}
+				else
+				{
+					UE_LOG(LogTemp, Error, TEXT("No se pudo obtener ni crear proyectil"));
+				}
 			}
 
 			bCanFire = false;
@@ -281,4 +292,29 @@ void AShooterNaves2025Pawn::ReiniciarNivel()
 	}
 
 	UGameplayStatics::OpenLevel(World, FName(*NombreNivel));
+}
+
+void AShooterNaves2025Pawn::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CrearPoolProyectiles();
+}
+
+void AShooterNaves2025Pawn::CrearPoolProyectiles()
+{
+	PoolProyectiles.Inicializar(
+		GetWorld(),
+		CantidadProyectilesPool,
+		FVector(0.f, 0.f, -5000.f)
+	);
+
+	UE_LOG(LogTemp, Warning,
+		TEXT("Template Object Pool creado con %d proyectiles"),
+		PoolProyectiles.ObtenerCantidad());
+}
+
+AShooterNaves2025Projectile* AShooterNaves2025Pawn::ObtenerProyectilDisponible()
+{
+	return PoolProyectiles.ObtenerDisponible(GetWorld());
 }

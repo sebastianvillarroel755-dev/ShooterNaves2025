@@ -60,7 +60,11 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AShooterHUD)
 
 
-#define ShooterNaves2025_Source_ShooterNaves2025_Public_ShooterHUD_h_10_PRIVATE_PROPERTY_OFFSET
+#define ShooterNaves2025_Source_ShooterNaves2025_Public_ShooterHUD_h_10_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__JugadorCache() { return STRUCT_OFFSET(AShooterHUD, JugadorCache); } \
+	FORCEINLINE static uint32 __PPO__GameModeCache() { return STRUCT_OFFSET(AShooterHUD, GameModeCache); }
+
+
 #define ShooterNaves2025_Source_ShooterNaves2025_Public_ShooterHUD_h_7_PROLOG
 #define ShooterNaves2025_Source_ShooterNaves2025_Public_ShooterHUD_h_10_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

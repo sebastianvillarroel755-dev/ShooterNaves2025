@@ -2,8 +2,8 @@
 #include "ProyectilEnemigo.h"
 #include "TimerManager.h"
 #include "Engine/World.h"
-#include "GameFramework/ProjectileMovementComponent.h" // Agregamos esto para el proyectil
-#include "GameFramework/Pawn.h" // Usamos la clase base genérica en vez de la que no existe
+#include "GameFramework/ProjectileMovementComponent.h"
+#include "GameFramework/Pawn.h"
 
 ANave_Francotirador::ANave_Francotirador()
 {
@@ -17,6 +17,14 @@ ANave_Francotirador::ANave_Francotirador()
 void ANave_Francotirador::BeginPlay()
 {
 	Super::BeginPlay();
+
+	PoolProyectiles.Inicializar(
+		GetWorld(),
+		CantidadProyectilesPool,
+		FVector(0.f, 0.f, -5000.f)
+	);
+
+	UE_LOG(LogTemp, Warning, TEXT("Francotirador BeginPlay - Pool inicializado"));
 
 	GetWorldTimerManager().SetTimer(
 		TimerDisparo,
@@ -71,8 +79,17 @@ void ANave_Francotirador::MantenerDistancia(float DeltaTime)
 
 void ANave_Francotirador::Disparar()
 {
-	if (!Jugador || bEstaMuerta)
+	UE_LOG(LogTemp, Warning, TEXT("Francotirador intento disparar"));
+
+	if (!Jugador)
 	{
+		UE_LOG(LogTemp, Error, TEXT("Francotirador no dispara: Jugador es nullptr"));
+		return;
+	}
+
+	if (bEstaMuerta)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Francotirador no dispara: esta muerto"));
 		return;
 	}
 
@@ -81,22 +98,32 @@ void ANave_Francotirador::Disparar()
 
 	if (Direccion.SizeSquared() <= 0.0f)
 	{
+		UE_LOG(LogTemp, Error, TEXT("Francotirador no dispara: direccion invalida"));
 		return;
 	}
 
 	FRotator RotacionDisparo = Direccion.Rotation();
 	FVector SpawnLocation = GetActorLocation() + RotacionDisparo.RotateVector(FVector(120.0f, 0.0f, 0.0f));
 
-	AProyectilEnemigo* Bala = GetWorld()->SpawnActor<AProyectilEnemigo>(
-		AProyectilEnemigo::StaticClass(),
-		SpawnLocation,
-		RotacionDisparo
-	);
+	AProyectilEnemigo* Bala = PoolProyectiles.ObtenerDisponible(GetWorld());
 
-	if (Bala && Bala->MovimientoProyectil)
+	if (!Bala)
 	{
-		Bala->Danio = 35.0f;
-		Bala->MovimientoProyectil->InitialSpeed = 1800.0f;
-		Bala->MovimientoProyectil->MaxSpeed = 1800.0f;
+		UE_LOG(LogTemp, Error, TEXT("Francotirador no pudo obtener bala del pool"));
+		return;
 	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Francotirador disparo usando Object Pool"));
+
+	Bala->SetOwner(this);
+	Bala->Danio = 35.0f;
+	Bala->MovimientoProyectil->InitialSpeed = 1800.0f;
+	Bala->MovimientoProyectil->MaxSpeed = 1800.0f;
+
+	if (Bala->MeshProyectil)
+	{
+		Bala->MeshProyectil->SetWorldScale3D(FVector(0.25f, 0.25f, 0.25f));
+	}
+
+	Bala->ActivarProyectil(SpawnLocation, RotacionDisparo);
 }
