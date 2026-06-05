@@ -65,5 +65,4 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AplicarBuffBoss(float MultiplicadorVida, float MultiplicadorResistencia);
 
-
 };

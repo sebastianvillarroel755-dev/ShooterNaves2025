@@ -16,18 +16,12 @@ APowerUpCuracion::APowerUpCuracion()
 
 void APowerUpCuracion::AplicarEfecto(AShooterNaves2025Pawn* Jugador)
 {
-	if (Jugador)
-	{
 		UE_LOG(LogTemp, Warning, TEXT("POWER UP RECOGIDO: CURACION +%f vida"), Cantidad);
-		Jugador->Curar(Cantidad);
-	}
 
-	AShooterNaves2025GameMode* GameMode = Cast<AShooterNaves2025GameMode>(
-		UGameplayStatics::GetGameMode(GetWorld())
-	);
+	UPowerUpEffect* EfectoBase = NewObject<UPowerUpEffect>(this);
+	UPowerUpCuracionDecorator* DecoradorCuracion = NewObject<UPowerUpCuracionDecorator>(this);
 
-	if (GameMode)
-	{
-		GameMode->MostrarMensajeTemporal(TEXT("POWER UP: CURACION"), 3.0f);
-	}
+	DecoradorCuracion->Inicializar(EfectoBase);
+	DecoradorCuracion->Configurar(Cantidad);
+	DecoradorCuracion->Aplicar(Jugador, GetWorld());
 }

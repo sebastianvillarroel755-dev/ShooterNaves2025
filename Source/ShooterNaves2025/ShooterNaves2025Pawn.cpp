@@ -121,7 +121,6 @@ void AShooterNaves2025Pawn::Tick(float DeltaSeconds)
 
 void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 {
-
 	if (bEstaMuerto)
 	{
 		return;
@@ -130,17 +129,24 @@ void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 	// If it's ok to fire again
 	if (bCanFire == true)
 	{
-		// If we are pressing fire stick in a direction
-		if (FireDirection.SizeSquared() > 0.0f)
+		return;
+	}
+
+	if (FireDirection.SizeSquared() <= 0.0f)
+	{
+		return;
+	}
+
+	UWorld* const World = GetWorld();
+
+	if (!World)
 		{
+		return;
+	}
+
 			const FRotator FireRotation = FireDirection.Rotation();
-			// Spawn projectile at an offset from this pawn
 			const FVector SpawnLocation = GetActorLocation() + FireRotation.RotateVector(GunOffset);
 
-			UWorld* const World = GetWorld();
-			if (World != nullptr)
-			{
-				// spawn the projectile
 				AShooterNaves2025Projectile* Proyectil = ObtenerProyectilDisponible();
 
 				if (Proyectil)
@@ -156,17 +162,18 @@ void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 			}
 
 			bCanFire = false;
-			World->GetTimerManager().SetTimer(TimerHandle_ShotTimerExpired, this, &AShooterNaves2025Pawn::ShotTimerExpired, FireRate);
 
-			// try and play the sound if specified
+	World->GetTimerManager().SetTimer(
+		TimerHandle_ShotTimerExpired,
+		this,
+		&AShooterNaves2025Pawn::ShotTimerExpired,
+		FireRate
+	);
+
 			if (FireSound != nullptr)
 			{
 				UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 			}
-
-			bCanFire = false;
-		}
-	}
 }
 
 void AShooterNaves2025Pawn::ShotTimerExpired()
