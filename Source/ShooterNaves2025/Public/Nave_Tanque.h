@@ -9,13 +9,12 @@
 UCLASS()
 class SHOOTERNAVES2025_API ANave_Tanque : public ANave_Padre
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	ANave_Tanque();
+    ANave_Tanque();
 
 protected:
-	virtual void BeginPlay() override;
     virtual void ConfigurarPatronesAtaque() override;
     virtual void EjecutarPatronAtaque(EPatronAtaqueEnemigo Patron) override;
 };

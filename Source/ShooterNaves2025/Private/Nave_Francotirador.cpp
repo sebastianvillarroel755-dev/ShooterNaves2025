@@ -14,8 +14,6 @@ ANave_Francotirador::ANave_Francotirador()
 void ANave_Francotirador::BeginPlay()
 {
 	Super::BeginPlay();
-
-	UE_LOG(LogTemp, Warning, TEXT("Francotirador BeginPlay - usa EnemyAttackFacade"));
 }
 
 void ANave_Francotirador::Tick(float DeltaTime)

@@ -11,7 +11,6 @@ D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Inc\ShooterNaves2025\Nave
 D:\ShooterNaves2025\Source\ShooterNaves2025\Public\Nave_Kamikaze.h
 D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Inc\ShooterNaves2025\Nave_Kamikaze.generated.h
 D:\ShooterNaves2025\Source\ShooterNaves2025\Public\Nave_Francotirador.h
-D:\ShooterNaves2025\Source\TObjectPool.h
 D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Inc\ShooterNaves2025\Nave_Francotirador.generated.h
 D:\ShooterNaves2025\Source\ShooterNaves2025\Public\Nave_Tanque.h
 D:\ShooterNaves2025\Intermediate\Build\Win64\UE4Editor\Inc\ShooterNaves2025\Nave_Tanque.generated.h

@@ -126,8 +126,7 @@ void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 		return;
 	}
 
-	// If it's ok to fire again
-	if (bCanFire == true)
+	if (!bCanFire)
 	{
 		return;
 	}
@@ -140,40 +139,43 @@ void AShooterNaves2025Pawn::FireShot(FVector FireDirection)
 	UWorld* const World = GetWorld();
 
 	if (!World)
-		{
+	{
 		return;
 	}
 
-			const FRotator FireRotation = FireDirection.Rotation();
-			const FVector SpawnLocation = GetActorLocation() + FireRotation.RotateVector(GunOffset);
+	const FRotator FireRotation = FireDirection.Rotation();
+	const FVector SpawnLocation = GetActorLocation() + FireRotation.RotateVector(GunOffset);
 
-				AShooterNaves2025Projectile* Proyectil = ObtenerProyectilDisponible();
+	AShooterNaves2025Projectile* Proyectil = ObtenerProyectilDisponible();
 
-				if (Proyectil)
-				{
-					Proyectil->SetOwner(this);
-					Proyectil->Danio = 25.0f * MultiplicadorDanio;
-					Proyectil->ActivarProyectil(SpawnLocation, FireRotation);
-				}
-				else
-				{
-					UE_LOG(LogTemp, Error, TEXT("No se pudo obtener ni crear proyectil"));
-				}
-			}
+	if (Proyectil)
+	{
+		Proyectil->SetOwner(this);
+		Proyectil->Danio = 25.0f * MultiplicadorDanio;
+		Proyectil->ActivarProyectil(SpawnLocation, FireRotation);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No se pudo obtener ni crear proyectil"));
+		return;
+	}
 
-			bCanFire = false;
+	bCanFire = false;
+
+	const float FireRateSeguro = FMath::Max(FireRate, 0.05f);
 
 	World->GetTimerManager().SetTimer(
 		TimerHandle_ShotTimerExpired,
 		this,
 		&AShooterNaves2025Pawn::ShotTimerExpired,
-		FireRate
+		FireRateSeguro,
+		false
 	);
 
-			if (FireSound != nullptr)
-			{
-				UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
-			}
+	if (FireSound != nullptr)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+	}
 }
 
 void AShooterNaves2025Pawn::ShotTimerExpired()

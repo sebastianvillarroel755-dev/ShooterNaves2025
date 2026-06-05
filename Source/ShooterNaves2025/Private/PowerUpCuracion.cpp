@@ -1,6 +1,8 @@
 #include "PowerUpCuracion.h"
 #include "../ShooterNaves2025Pawn.h"
 #include "../ShooterNaves2025GameMode.h"
+#include "PowerUpEffect.h"
+#include "PowerUpCuracionDecorator.h"
 #include "Kismet/GameplayStatics.h"
 
 APowerUpCuracion::APowerUpCuracion()
@@ -16,7 +18,7 @@ APowerUpCuracion::APowerUpCuracion()
 
 void APowerUpCuracion::AplicarEfecto(AShooterNaves2025Pawn* Jugador)
 {
-		UE_LOG(LogTemp, Warning, TEXT("POWER UP RECOGIDO: CURACION +%f vida"), Cantidad);
+	UE_LOG(LogTemp, Warning, TEXT("POWER UP RECOGIDO: CURACION +%f vida"), Cantidad);
 
 	UPowerUpEffect* EfectoBase = NewObject<UPowerUpEffect>(this);
 	UPowerUpCuracionDecorator* DecoradorCuracion = NewObject<UPowerUpCuracionDecorator>(this);
